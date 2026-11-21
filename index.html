@@ -15,7 +15,29 @@ body{margin:0;color:var(--ink);font:400 1rem/1.75 Poppins,system-ui,sans-serif;b
 h1,h2,h3{margin:0;line-height:1.2}
 a{color:var(--cy)}
 a:focus-visible{outline:3px solid var(--cy);outline-offset:3px}
+
 #bg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.space-sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.space-sun{position:absolute;top:12%;right:8%;width:68px;height:68px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff5c7,#ffb347 48%,#ff6b6b);box-shadow:0 0 35px 12px rgba(255,165,70,.22),0 0 90px rgba(255,110,100,.16);animation:sunPulse 5s ease-in-out infinite}
+.space-moon{position:absolute;top:38%;left:7%;width:52px;height:52px;border-radius:50%;background:#e8edff;box-shadow:0 0 28px rgba(190,210,255,.55);overflow:hidden}
+.space-moon:after{content:"";position:absolute;top:-7px;left:17px;width:52px;height:52px;border-radius:50%;background:#17113f}
+.shooting-star{position:absolute;top:17%;left:-20%;width:130px;height:2px;background:linear-gradient(90deg,transparent,#fff,#8be7ff,transparent);filter:drop-shadow(0 0 5px #7de8ff);transform:rotate(-24deg);animation:shoot 8s linear infinite}
+.shooting-star.two{top:56%;animation-delay:4.5s;animation-duration:10s;transform:rotate(-18deg) scale(.7)}
+@keyframes shoot{0%,72%{left:-22%;opacity:0}74%{opacity:1}88%{left:120%;opacity:0}100%{left:120%;opacity:0}}
+@keyframes sunPulse{50%{transform:scale(1.07);box-shadow:0 0 48px 18px rgba(255,165,70,.28),0 0 110px rgba(255,110,100,.2)}}
+.astronaut-buddy{position:fixed;right:22px;bottom:22px;z-index:5;width:104px;height:132px;pointer-events:auto;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35));animation:astronautFloat 4.2s ease-in-out infinite}
+.astronaut-buddy svg{width:100%;height:100%;overflow:visible}
+.astronaut-buddy:hover{animation:astronautWave 1s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(24,185,255,.5))}
+.astronaut-tip{position:absolute;right:88px;bottom:45px;width:max-content;max-width:190px;padding:.55rem .8rem;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(25,18,68,.92);color:#fff;font-size:.72rem;opacity:0;transform:translateX(8px);transition:.25s}
+.astronaut-buddy:hover .astronaut-tip,.astronaut-buddy:focus .astronaut-tip{opacity:1;transform:translateX(0)}
+@keyframes astronautFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-15px) rotate(5deg)}}
+@keyframes astronautWave{0%,100%{transform:translateY(-8px) rotate(-8deg)}50%{transform:translateY(-18px) rotate(9deg)}}
+.cert-card{transform-style:preserve-3d;will-change:transform}
+.cert-thumb{transition:filter .3s ease}
+.cert-card:hover .cert-thumb{filter:brightness(1.08)}
+@media(max-width:600px){.space-sun{width:42px;height:42px;top:16%;right:5%}.space-moon{width:34px;height:34px;left:3%}.space-moon:after{width:34px;height:34px;left:12px}.astronaut-buddy{width:72px;height:94px;right:8px;bottom:10px}.astronaut-tip{right:62px;bottom:28px}}
+@media(prefers-reduced-motion:reduce){.space-sun,.shooting-star,.astronaut-buddy{animation:none}}
+
 .wrap,footer{position:relative;z-index:1}
 .wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem}
 header.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.4rem 0}
@@ -102,6 +124,24 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:2rem 1rem 3r
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
+<div class="space-sky" aria-hidden="true"><div class="space-sun"></div><div class="space-moon"></div><i class="shooting-star"></i><i class="shooting-star two"></i></div>
+<div class="astronaut-buddy" tabindex="0" role="img" aria-label="A little astronaut floating in space">
+  <span class="astronaut-tip">Hi, explorer! Welcome to my universe ✨</span>
+  <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="60" cy="142" rx="29" ry="5" fill="#05051b" opacity=".35"/>
+    <path d="M34 91 22 111q-3 7 5 10l12-18M86 91l12 20q3 7-5 10l-12-18" fill="#dce7ff" stroke="#8798c8" stroke-width="3"/>
+    <rect x="36" y="72" width="48" height="53" rx="19" fill="#f4f7ff" stroke="#9aaddb" stroke-width="3"/>
+    <rect x="46" y="83" width="28" height="23" rx="7" fill="#9de8ff" stroke="#4b7ea9" stroke-width="2"/>
+    <path d="M48 88h10M48 94h15" stroke="#fff" stroke-width="2" opacity=".8"/>
+    <path d="M37 83 23 91q-6 4-2 10l15 4M83 83l14 8q6 4 2 10l-15 4" fill="#eef3ff" stroke="#9aaddb" stroke-width="3"/>
+    <rect x="43" y="22" width="34" height="43" rx="17" fill="#f6f8ff" stroke="#9aaddb" stroke-width="3"/>
+    <rect x="47" y="31" width="26" height="23" rx="12" fill="#19345f" stroke="#6edcff" stroke-width="3"/>
+    <path d="M51 37q8-7 17 0" stroke="#baf4ff" stroke-width="3" fill="none" opacity=".9"/>
+    <circle cx="60" cy="13" r="5" fill="#18b9ff"/><path d="M60 18v5" stroke="#9aaddb" stroke-width="3"/>
+    <path d="M43 119h34l-4 12H47z" fill="#cbd7f5" stroke="#8798c8" stroke-width="2"/>
+    <circle cx="60" cy="95" r="3" fill="#18b9ff"/>
+  </svg>
+</div>
 <div class="wrap">
 <header class="top">
 <a class="logo" href="#home">Jencirai</a>
@@ -314,6 +354,7 @@ if(reduce){render();addEventListener('scroll',render)}else frame();
 </script>
 
 <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate preview"><button class="cert-close" type="button" aria-label="Close certificate preview">&times;</button><img src="" alt="Full-size certificate preview"></div>
-<script>(function(){const modal=document.getElementById('certModal'),preview=modal.querySelector('img'),close=modal.querySelector('.cert-close');function openCert(img){preview.src=img.src;preview.alt=img.alt;modal.classList.add('open');document.body.style.overflow='hidden';close.focus()}function closeCert(){modal.classList.remove('open');preview.src='';document.body.style.overflow=''}document.querySelectorAll('.cert-thumb').forEach(img=>{img.addEventListener('click',()=>openCert(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCert(img)}})});close.addEventListener('click',closeCert);modal.addEventListener('click',e=>{if(e.target===modal)closeCert()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeCert()})})();</script>
+<script>(function(){const modal=document.getElementById('certModal'),preview=modal.querySelector('img'),close=modal.querySelector('.cert-close');function openCert(img){preview.src=img.src;preview.alt=img.alt;modal.classList.add('open');document.body.style.overflow='hidden';close.focus()}function closeCert(){modal.classList.remove('open');preview.src='';document.body.style.overflow=''}document.querySelectorAll('.cert-card').forEach(card=>{card.addEventListener('pointermove',e=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const b=card.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;card.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-5px)'});card.addEventListener('pointerleave',()=>{card.style.transform=''})});
+document.querySelectorAll('.cert-thumb').forEach(img=>{img.addEventListener('click',()=>openCert(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCert(img)}})});close.addEventListener('click',closeCert);modal.addEventListener('click',e=>{if(e.target===modal)closeCert()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeCert()})})();</script>
 </body>
 </html>
