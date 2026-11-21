@@ -256,6 +256,20 @@ var cv=document.getElementById('bg'),ps=document.getElementById('pstage').queryS
 var r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
 r.setPixelRatio(Math.min(devicePixelRatio,2));
 var s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,80);cam.position.z=10;
+
+// 3D spiral galaxy: glowing core + four slowly rotating star arms.
+var galaxy=new THREE.Group();galaxy.position.set(-2.25,1.05,-3.8);galaxy.rotation.set(.72,.18,0);galaxy.scale.setScalar(1.05);s.add(galaxy);
+var galaxyN=2600,gp=new Float32Array(galaxyN*3),gc=new Float32Array(galaxyN*3);
+for(var gi=0;gi<galaxyN;gi++){
+  var arm=gi%4,rad=Math.pow(Math.random(),.62)*2.45,ang=arm*Math.PI/2+rad*1.55+(Math.random()-.5)*.34;
+  gp[gi*3]=Math.cos(ang)*rad;gp[gi*3+1]=Math.sin(ang)*rad;gp[gi*3+2]=(Math.random()-.5)*.22*(1-rad/3);
+  var mix=Math.random(),col=new THREE.Color().setHSL(.56+mix*.22,.78,.58+Math.random()*.22);
+  gc[gi*3]=col.r;gc[gi*3+1]=col.g;gc[gi*3+2]=col.b;
+}
+var ggeo=new THREE.BufferGeometry();ggeo.setAttribute('position',new THREE.BufferAttribute(gp,3));ggeo.setAttribute('color',new THREE.BufferAttribute(gc,3));
+var gstars=new THREE.Points(ggeo,new THREE.PointsMaterial({size:.025,vertexColors:true,transparent:true,opacity:.82,depthWrite:false,blending:THREE.AdditiveBlending}));galaxy.add(gstars);
+var core=new THREE.Mesh(new THREE.SphereGeometry(.24,32,24),new THREE.MeshBasicMaterial({color:0xb9a6ff,transparent:true,opacity:.8}));galaxy.add(core);
+var halo=new THREE.Mesh(new THREE.SphereGeometry(.48,32,24),new THREE.MeshBasicMaterial({color:0x7657ff,transparent:true,opacity:.12,side:THREE.BackSide}));galaxy.add(halo);
 s.add(new THREE.AmbientLight(0xffffff,.6));
 [[0x18b9ff,-5,4,6,1.6],[0xff5fa2,5,-3,5,1.2],[0x8a63ff,0,5,-2,1.3]].forEach(function(l){var p=new THREE.PointLight(l[0],l[4],40);p.position.set(l[1],l[2],l[3]);s.add(p)});
 var orbit=new THREE.Group();s.add(orbit);
@@ -280,6 +294,7 @@ size();addEventListener('resize',function(){size();if(reduce)render()});addEvent
 var mx=0,my=0;addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
 var t=0;
 function render(){
+galaxy.rotation.z=t*.045;galaxy.rotation.y=Math.sin(t*.12)*.12;core.scale.setScalar(1+Math.sin(t*1.8)*.07);
 var sy=pageYOffset,rc=ps.getBoundingClientRect();
 orbit.position.set(((rc.left+rc.width/2)/W-.5)*2*hh*asp,-((rc.top+rc.height/2)/H-.5)*2*hh,0);
 orbit.scale.setScalar(rc.width*upp/2);
