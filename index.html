@@ -466,6 +466,18 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
  #home.reference-hero .btn:after{display:none}
 }
 
+
+/* Remove the small welcome badge frame and its decorative dot */
+#home.reference-hero .hero-kicker{
+ display:block!important;width:max-content;max-width:100%;
+ padding:0!important;margin:0 0 1.2rem!important;
+ border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;
+ backdrop-filter:none!important;gap:0!important;
+}
+#home.reference-hero .hero-kicker:before,
+#home.reference-hero .hero-kicker:after{display:none!important;content:none!important}
+
 </style>
 </head>
 <body>
