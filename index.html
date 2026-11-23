@@ -128,7 +128,6 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:2rem 1rem 3r
 /* Reference-inspired indigo landscape portfolio */
 :root{color-scheme:dark;--bg:#100d48;--card:#211b70;--card2:#292184;--cy:#b9b5ff;--ink:#f4f2ff;--mute:#c8c5ec;--line:rgba(220,218,255,.18)}
 body{background:#09091c;color:var(--ink);font-family:Poppins,system-ui,sans-serif}
-.space-sky,#bg{display:none!important}
 .wrap{max-width:1120px;background:#151052;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.45);border-left:1px solid rgba(210,205,255,.16);border-right:1px solid rgba(210,205,255,.16)}
 header.top{padding:1.25rem 1.7rem;background:rgba(18,14,76,.96)}
 .logo{font-size:1.15rem;letter-spacing:.08em}
@@ -182,8 +181,6 @@ footer{background:#100d48}
 </style>
 </head>
 <body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="space-sky" aria-hidden="true"><div class="space-sun"></div><div class="space-moon"></div><i class="shooting-star"></i><i class="shooting-star two"></i></div>
 <div class="wrap">
 <header class="top">
 <a class="logo" href="#home">Jencirai</a>
@@ -329,7 +326,6 @@ footer{background:#100d48}
 </div>
 <footer>© 2026 Jencirai T</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -347,65 +343,8 @@ document.querySelectorAll('.card').forEach(function(c){
 c.addEventListener('pointermove',function(e){if(reduce)return;var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform='rotateY('+x*9+'deg) rotateX('+(-y*9)+'deg)'});
 c.addEventListener('pointerleave',function(){c.style.transform=''});
 });
-try{
-var cv=document.getElementById('bg'),ps=document.getElementById('pstage').querySelector('.ph');
-var r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
-r.setPixelRatio(Math.min(devicePixelRatio,2));
-var s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,80);cam.position.z=10;
+// Removed the previous 3D galaxy renderer to match the supplied static landscape template and avoid unnecessary GPU load.
 
-// 3D spiral galaxy: glowing core + four slowly rotating star arms.
-var galaxy=new THREE.Group();galaxy.position.set(-2.25,1.05,-3.8);galaxy.rotation.set(.72,.18,0);galaxy.scale.setScalar(1.05);s.add(galaxy);
-var galaxyN=2600,gp=new Float32Array(galaxyN*3),gc=new Float32Array(galaxyN*3);
-for(var gi=0;gi<galaxyN;gi++){
-  var arm=gi%4,rad=Math.pow(Math.random(),.62)*2.45,ang=arm*Math.PI/2+rad*1.55+(Math.random()-.5)*.34;
-  gp[gi*3]=Math.cos(ang)*rad;gp[gi*3+1]=Math.sin(ang)*rad;gp[gi*3+2]=(Math.random()-.5)*.22*(1-rad/3);
-  var mix=Math.random(),col=new THREE.Color().setHSL(.56+mix*.22,.78,.58+Math.random()*.22);
-  gc[gi*3]=col.r;gc[gi*3+1]=col.g;gc[gi*3+2]=col.b;
-}
-var ggeo=new THREE.BufferGeometry();ggeo.setAttribute('position',new THREE.BufferAttribute(gp,3));ggeo.setAttribute('color',new THREE.BufferAttribute(gc,3));
-var gstars=new THREE.Points(ggeo,new THREE.PointsMaterial({size:.025,vertexColors:true,transparent:true,opacity:.82,depthWrite:false,blending:THREE.AdditiveBlending}));galaxy.add(gstars);
-var core=new THREE.Mesh(new THREE.SphereGeometry(.24,32,24),new THREE.MeshBasicMaterial({color:0xb9a6ff,transparent:true,opacity:.8}));galaxy.add(core);
-var halo=new THREE.Mesh(new THREE.SphereGeometry(.48,32,24),new THREE.MeshBasicMaterial({color:0x7657ff,transparent:true,opacity:.12,side:THREE.BackSide}));galaxy.add(halo);
-s.add(new THREE.AmbientLight(0xffffff,.6));
-[[0x18b9ff,-5,4,6,1.6],[0xff5fa2,5,-3,5,1.2],[0x8a63ff,0,5,-2,1.3]].forEach(function(l){var p=new THREE.PointLight(l[0],l[4],40);p.position.set(l[1],l[2],l[3]);s.add(p)});
-var orbit=new THREE.Group();s.add(orbit);
-var rg=new THREE.Mesh(new THREE.TorusGeometry(1.22,.018,10,160),new THREE.MeshBasicMaterial({color:0x18b9ff}));rg.rotation.set(1.25,.3,0);orbit.add(rg);
-var rg2=new THREE.Mesh(new THREE.TorusGeometry(1.4,.012,10,160),new THREE.MeshBasicMaterial({color:0xff5fa2,transparent:true,opacity:.8}));rg2.rotation.set(1.9,-.5,0);orbit.add(rg2);
-var moons=[];[[.07,1.22,0x18b9ff,1.25,.3],[.05,1.4,0xff5fa2,1.9,-.5]].forEach(function(o){var pv=new THREE.Group();pv.rotation.set(o[3],o[4],0);var m=new THREE.Mesh(new THREE.SphereGeometry(o[0],20,14),new THREE.MeshStandardMaterial({color:o[2],roughness:.3}));m.position.x=o[1];pv.add(m);orbit.add(pv);moons.push(pv)});
-var defs=[[0x18b9ff,.7,1],[0x8a63ff,.9,0],[0xff5fa2,.5,1],[0x18b9ff,.55,0],[0x8a63ff,.8,1],[0xff5fa2,.6,0]];
-var planets=defs.map(function(d,i){var g=new THREE.Group();
-var sp=new THREE.Mesh(new THREE.SphereGeometry(d[1],40,28),new THREE.MeshStandardMaterial({color:d[0],roughness:.55,metalness:.1,transparent:true}));sp.userData.op=1;g.add(sp);
-if(d[2]){var rr=new THREE.Mesh(new THREE.RingGeometry(d[1]*1.5,d[1]*2.1,64),new THREE.MeshBasicMaterial({color:d[0],transparent:true,opacity:.45,side:THREE.DoubleSide}));rr.userData.op=.45;rr.rotation.x=-1.2;g.add(rr)}
-g.userData.side=i%2?1:-1;s.add(g);return g});
-var starN=700,sg=new THREE.BufferGeometry(),spos=new Float32Array(starN*3);
-sg.setAttribute('position',new THREE.BufferAttribute(spos,3));
-var stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0xcfd8ff,size:.05,transparent:true,opacity:.8}));s.add(stars);
-var W,H,hh,asp,upp,docH;
-function size(){W=innerWidth;H=innerHeight;r.setSize(W,H,false);asp=W/H;cam.aspect=asp;cam.updateProjectionMatrix();hh=Math.tan(20*Math.PI/180)*10;upp=2*hh/H;docH=document.documentElement.scrollHeight;
-var small=asp<1;
-planets.forEach(function(g){g.scale.setScalar(small?.6:1);g.traverse(function(m){if(m.material&&m.userData.op)m.material.opacity=m.userData.op*(small?.5:1)})});
-for(var i=0;i<starN;i++){spos[i*3]=(Math.random()-.5)*2*hh*asp*1.6;spos[i*3+1]=hh-Math.random()*(docH*upp*.25+2*hh);spos[i*3+2]=-Math.random()*14}
-sg.attributes.position.needsUpdate=true}
-size();addEventListener('resize',function(){size();if(reduce)render()});addEventListener('load',function(){size();if(reduce)render()});
-var mx=0,my=0;addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-var t=0;
-function render(){
-galaxy.rotation.z=t*.045;galaxy.rotation.y=Math.sin(t*.12)*.12;core.scale.setScalar(1+Math.sin(t*1.8)*.07);
-var sy=pageYOffset,rc=ps.getBoundingClientRect();
-orbit.position.set(((rc.left+rc.width/2)/W-.5)*2*hh*asp,-((rc.top+rc.height/2)/H-.5)*2*hh,0);
-orbit.scale.setScalar(rc.width*upp/2);
-rg.rotation.z=t*.4;rg2.rotation.z=-t*.3;moons[0].rotation.z=t*.9;moons[1].rotation.z=-t*.7;
-stars.position.set(mx*.4,sy*upp*.25,0);
-var n=planets.length;
-planets.forEach(function(g,i){
-var x=g.userData.side*hh*asp*(asp<1?.92:.88);
-var y=-(i+.5)/n*docH*upp*.85+sy*upp*.85+Math.sin(t+i)*.2;
-g.position.set(x,y,-2-(i%3)*1.5);
-g.rotation.y=t*.3+i;g.rotation.z=.25*(i%2?1:-1)});
-r.render(s,cam)}
-function frame(){t+=.012;render();requestAnimationFrame(frame)}
-if(reduce){render();addEventListener('scroll',render)}else frame();
-}catch(e){}
 })();
 </script>
 
