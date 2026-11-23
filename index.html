@@ -387,6 +387,30 @@ section p,.build-grid p,.cert-meta p,.rows li span{transition:color .35s ease,te
 .build-grid article:hover h3,.cert-card:hover .cert-meta h3{animation:labelShimmer 2.5s linear infinite}
 @media(prefers-reduced-motion:reduce){section h2,.reference-hero .name-main,.eyebrow,.hero-kicker{animation:none!important}section h2:after{animation:none!important}.btn:before{display:none}}
 
+
+/* Site-wide anti-gravity typography motion */
+html.motion-ready .motion-text{opacity:0;transform:translate3d(0,22px,0) rotateX(9deg);filter:blur(3px);transition:opacity .85s ease,transform .9s cubic-bezier(.16,1,.3,1),filter .85s ease;transition-delay:var(--motion-delay,0ms);transform-origin:50% 100%}
+html.motion-ready .motion-text.motion-in{opacity:1;transform:translate3d(0,0,0) rotateX(0);filter:blur(0)}
+section h2.motion-text, .what-build>.eyebrow.motion-text{ text-shadow:0 0 18px rgba(174,166,255,.22)}
+section h2.motion-text.motion-in{animation:antiGravityHeading 5.5s ease-in-out infinite}
+@keyframes antiGravityHeading{0%,100%{translate:0 0;filter:drop-shadow(0 5px 10px rgba(6,5,45,.24))}50%{translate:0 -4px;filter:drop-shadow(0 10px 17px rgba(161,153,255,.25))}}
+h3.motion-text.motion-in{animation:softTextHover 6s ease-in-out infinite;animation-delay:calc(var(--motion-delay,0ms) + .8s)}
+@keyframes softTextHover{0%,100%{text-shadow:0 0 0 rgba(190,184,255,0)}50%{text-shadow:0 0 12px rgba(190,184,255,.22)}}
+p.motion-text.motion-in{animation:paragraphLift 7s ease-in-out infinite}
+@keyframes paragraphLift{0%,100%{translate:0 0}50%{translate:0 -1.5px}}
+nav a{position:relative;transition:color .3s ease,text-shadow .3s ease,transform .3s ease}
+nav a:after{content:"";position:absolute;left:50%;right:50%;bottom:-7px;height:2px;border-radius:4px;background:linear-gradient(90deg,#8d88ff,#eeeaff);box-shadow:0 0 12px rgba(180,172,255,.75);transition:left .35s ease,right .35s ease}
+nav a:hover{color:#fff!important;text-shadow:0 0 12px rgba(196,189,255,.65);transform:translateY(-2px)}
+nav a:hover:after,nav a:focus-visible:after{left:0;right:0}
+.logo{transition:filter .3s ease,transform .3s ease}
+.logo:hover{filter:drop-shadow(0 0 12px rgba(191,183,255,.7));transform:translateY(-2px)}
+section .eyebrow.motion-text{letter-spacing:.2em;transition:letter-spacing .5s ease,opacity .85s ease,transform .9s cubic-bezier(.16,1,.3,1),filter .85s ease}
+section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out infinite}
+@keyframes eyebrowPulse{0%,100%{text-shadow:0 0 6px rgba(174,166,255,.15)}50%{text-shadow:0 0 16px rgba(174,166,255,.55)}}
+.cert-meta h3,.build-grid h3{line-height:1.45}
+.cert-meta p,.card p,.rows li span{line-height:1.85}
+@media(prefers-reduced-motion:reduce){html.motion-ready .motion-text{opacity:1;transform:none;filter:none;transition:none}section h2.motion-text.motion-in,h3.motion-text.motion-in,p.motion-text.motion-in,section .eyebrow.motion-text.motion-in{animation:none!important}nav a:after{display:none}}
+
 </style>
 </head>
 <body>
@@ -583,5 +607,25 @@ c.addEventListener('pointerleave',function(){c.style.transform=''});
 <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate preview"><button class="cert-close" type="button" aria-label="Close certificate preview">&times;</button><img src="" alt="Full-size certificate preview"></div>
 <script>(function(){const modal=document.getElementById('certModal'),preview=modal.querySelector('img'),close=modal.querySelector('.cert-close');function openCert(img){preview.src=img.src;preview.alt=img.alt;modal.classList.add('open');document.body.style.overflow='hidden';close.focus()}function closeCert(){modal.classList.remove('open');preview.src='';document.body.style.overflow=''}document.querySelectorAll('.cert-card').forEach(card=>{card.addEventListener('pointermove',e=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const b=card.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;card.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-5px)'});card.addEventListener('pointerleave',()=>{card.style.transform=''})});
 document.querySelectorAll('.cert-thumb').forEach(img=>{img.addEventListener('click',()=>openCert(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCert(img)}})});close.addEventListener('click',closeCert);modal.addEventListener('click',e=>{if(e.target===modal)closeCert()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeCert()})})();</script>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var selectors='section h2,section h3,section p,section li,.build-grid h3,.build-grid p,.build-grid b,.what-build>.eyebrow,.build-intro p,.build-intro span,.cert-meta a,header nav a,header .logo,.hero-kicker,.name-sub,.role';
+  var nodes=Array.prototype.slice.call(document.querySelectorAll(selectors));
+  if(reduce){return}
+  nodes.forEach(function(el,i){el.classList.add('motion-text');el.style.setProperty('--motion-delay',(i%6)*65+'ms')});
+  document.documentElement.classList.add('motion-ready');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){entry.target.classList.add('motion-in');io.unobserve(entry.target)}
+      });
+    },{threshold:.14,rootMargin:'0px 0px -24px 0px'});
+    nodes.forEach(function(el){io.observe(el)});
+  }else{nodes.forEach(function(el){el.classList.add('motion-in')})}
+})();
+</script>
+
 </body>
 </html>
