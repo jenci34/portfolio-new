@@ -248,6 +248,50 @@ footer{color:#8393b5;border-top:1px solid rgba(160,190,255,.12);padding:1.5rem;t
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+
+/* Animated Midnight Aurora layer — lightweight CSS motion */
+@keyframes auroraFlow{
+  0%,100%{transform:translate3d(-2%,1%,0) scale(1);opacity:.48}
+  50%{transform:translate3d(2%,-2%,0) scale(1.08);opacity:.78}
+}
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 18px rgba(119,229,255,.08)}
+  50%{text-shadow:0 0 34px rgba(119,229,255,.28),0 0 62px rgba(166,154,255,.16)}
+}
+@keyframes portraitFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-12px) rotate(1deg)}
+}
+@keyframes ringTurn{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes cardEntrance{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes twinkleSoft{0%,100%{opacity:.42}50%{opacity:.82}}
+.space-sky:after{animation:auroraFlow 24s ease-in-out infinite alternate}
+.space-sky:before{animation:starDrift 72s linear infinite,twinkleSoft 6s ease-in-out infinite}
+.nebula-one{animation:nebulaDrift 19s ease-in-out infinite alternate,auroraFlow 17s ease-in-out infinite}
+.nebula-two{animation:nebulaDrift 25s ease-in-out infinite alternate-reverse,auroraFlow 21s ease-in-out infinite reverse}
+.hero h1{animation:titleGlow 5s ease-in-out infinite}
+#pstage{position:relative}
+#pstage:before,#pstage:after{
+ content:"";position:absolute;left:50%;top:50%;width:min(390px,78vw);height:min(390px,78vw);
+ border:1px solid rgba(132,210,255,.22);border-radius:50%;transform:translate(-50%,-50%);
+ box-shadow:0 0 25px rgba(112,156,255,.08);pointer-events:none
+}
+#pstage:after{width:min(440px,88vw);height:min(250px,50vw);border-color:rgba(183,147,255,.24);animation:ringTurn 38s linear infinite}
+.ph{animation:portraitFloat 6s ease-in-out infinite}
+.card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.card:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(27,135,190,.16)}
+.cert-card{transition:transform .28s ease,box-shadow .28s ease}
+.cert-card:hover{box-shadow:0 20px 45px rgba(86,160,255,.16)}
+.btn.fill{background-size:180% 180%;animation:buttonAurora 7s ease infinite}
+@keyframes buttonAurora{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){
+ .space-sky:before,.space-sky:after,.nebula-one,.nebula-two,.hero h1,#pstage:after,.ph,.btn.fill{animation:none!important}
+ .card,.cert-card,.btn{transition:none!important}
+}
+
 </style>
 </head>
 <body>
