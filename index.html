@@ -583,6 +583,81 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
  #home.reference-hero .btn.line{animation:none!important}
 }
 
+
+/* Extra cinematic 3D motion for the home page */
+#home.reference-hero .hero-copy{
+  position:relative;transform-style:preserve-3d;
+  animation:heroCopyFloat 7s ease-in-out infinite;
+}
+#home.reference-hero .hero-copy:before{
+  content:"";position:absolute;z-index:-1;left:-9%;top:2%;width:78%;height:76%;
+  pointer-events:none;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(133,111,255,.22),rgba(60,49,170,.08) 42%,transparent 72%);
+  filter:blur(24px);animation:copyAura 6s ease-in-out infinite alternate;
+}
+#home.reference-hero .name-title .name-main{
+  text-shadow:1px 1px 0 rgba(188,174,255,.55),2px 2px 0 rgba(130,112,224,.45),
+  3px 3px 0 rgba(88,73,178,.38),4px 4px 0 rgba(54,43,130,.3),
+  0 12px 24px rgba(5,3,50,.6);
+  transform-style:preserve-3d;will-change:transform,filter;
+  animation:nameShine 5.5s linear infinite,nameFloat 5.5s ease-in-out infinite,
+  nameAura 3.8s ease-in-out infinite,nameDepthPulse 6s ease-in-out infinite,nameTilt3D 8s ease-in-out infinite;
+}
+#home.reference-hero .role{
+  transform:translateZ(24px);animation:roleLift 5s ease-in-out infinite;
+  text-shadow:0 5px 18px rgba(4,3,45,.4);
+}
+#home.reference-hero .btn{
+  transform:translateZ(34px);transform-style:preserve-3d;
+  box-shadow:0 9px 0 rgba(7,8,55,.28),0 16px 28px rgba(5,4,48,.32),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .35s ease,box-shadow .35s ease,filter .35s ease;
+}
+#home.reference-hero .btn:hover{
+  transform:translate3d(0,-9px,48px) rotateX(12deg) scale(1.045);
+  box-shadow:0 15px 0 rgba(7,8,55,.25),0 25px 42px rgba(5,4,48,.48),0 0 24px rgba(157,143,255,.35);
+  filter:brightness(1.12);
+}
+#home.reference-hero .hero-scene{
+  transform-style:preserve-3d;will-change:transform,filter;
+  animation:sceneHover3D 9s ease-in-out infinite,sceneGlow3D 5s ease-in-out infinite alternate;
+}
+#home.reference-hero .planet{
+  box-shadow:inset -34px -24px 48px rgba(4,7,48,.9),inset 12px 10px 28px rgba(210,220,255,.28),
+  0 22px 42px rgba(5,8,48,.5),0 0 55px rgba(112,137,255,.42),0 0 95px rgba(119,94,255,.18);
+}
+#home.reference-hero .planet-ring{
+  filter:drop-shadow(0 0 10px rgba(180,190,255,.65));
+  transform-style:preserve-3d;
+}
+#home.reference-hero .ship{filter:drop-shadow(0 0 10px rgba(210,215,255,.85));}
+@keyframes heroCopyFloat{
+  0%,100%{transform:translate3d(0,0,0) rotateY(-1deg)}
+  50%{transform:translate3d(0,-9px,18px) rotateY(1.5deg)}
+}
+@keyframes copyAura{from{opacity:.45;transform:scale(.88) translateX(-10px)}to{opacity:1;transform:scale(1.12) translateX(12px)}}
+@keyframes nameTilt3D{
+  0%,100%{transform:perspective(800px) rotateX(0deg) rotateY(-2deg) translateZ(18px)}
+  50%{transform:perspective(800px) rotateX(5deg) rotateY(2deg) translateZ(32px)}
+}
+@keyframes roleLift{0%,100%{translate:0 0}50%{translate:0 -4px}}
+@keyframes sceneHover3D{
+  0%,100%{transform:perspective(1000px) rotateY(-2deg) rotateX(1deg) translateY(0)}
+  50%{transform:perspective(1000px) rotateY(3deg) rotateX(-2deg) translateY(-13px)}
+}
+@keyframes sceneGlow3D{
+  from{filter:drop-shadow(0 12px 24px rgba(82,73,210,.2))}
+  to{filter:drop-shadow(0 22px 34px rgba(130,116,255,.42))}
+}
+@media(max-width:700px){
+ #home.reference-hero .hero-copy{animation:heroCopyFloat 8s ease-in-out infinite}
+ #home.reference-hero .name-title .name-main{text-shadow:1px 1px 0 rgba(188,174,255,.5),2px 2px 0 rgba(88,73,178,.3),0 8px 18px rgba(5,3,50,.55)}
+}
+@media(prefers-reduced-motion:reduce){
+ #home.reference-hero .hero-copy,#home.reference-hero .hero-copy:before,
+ #home.reference-hero .name-title .name-main,#home.reference-hero .role,
+ #home.reference-hero .hero-scene{animation:none!important}
+}
+
 </style>
 </head>
 <body>
