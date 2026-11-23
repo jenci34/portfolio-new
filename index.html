@@ -478,6 +478,32 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
 #home.reference-hero .hero-kicker:before,
 #home.reference-hero .hero-kicker:after{display:none!important;content:none!important}
 
+
+/* Subtle 3D depth for the homepage hero */
+#home.reference-hero .hero-copy{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .22s cubic-bezier(.2,.7,.2,1);
+}
+#home.reference-hero .name-title{transform:translateZ(58px);transform-style:preserve-3d}
+#home.reference-hero .name-title .name-main{
+  text-shadow:0 2px 0 rgba(224,220,255,.16),0 5px 0 rgba(132,124,220,.13),0 13px 22px rgba(5,4,44,.52);
+}
+#home.reference-hero .name-title .name-sub{translate:0 0 28px}
+#home.reference-hero .role{translate:0 0 24px}
+#home.reference-hero .btn{translate:0 0 34px;box-shadow:0 12px 24px rgba(8,6,55,.25)}
+#home.reference-hero .hero-scene{transform-style:preserve-3d}
+@media(max-width:600px){
+  #home.reference-hero .hero-copy{transition:none}
+  #home.reference-hero .name-title{transform:translateZ(28px)}
+  #home.reference-hero .name-title .name-sub,
+  #home.reference-hero .role{translate:0 0 12px}
+  #home.reference-hero .btn{translate:0 0 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  #home.reference-hero .hero-copy{transform:none!important;transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -690,6 +716,23 @@ document.querySelectorAll('.cert-thumb').forEach(img=>{img.addEventListener('cli
     },{threshold:.14,rootMargin:'0px 0px -24px 0px'});
     nodes.forEach(function(el){io.observe(el)});
   }else{nodes.forEach(function(el){el.classList.add('motion-in')})}
+})();
+</script>
+
+
+<script>
+(function(){
+  var hero=document.querySelector('#home.reference-hero');
+  var copy=hero&&hero.querySelector('.hero-copy');
+  if(!hero||!copy||!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  hero.addEventListener('pointermove',function(e){
+    if(e.pointerType==='touch')return;
+    var b=hero.getBoundingClientRect();
+    var x=(e.clientX-b.left)/b.width-.5;
+    var y=(e.clientY-b.top)/b.height-.5;
+    copy.style.transform='perspective(1100px) rotateX('+(-y*2.2).toFixed(2)+'deg) rotateY('+(x*2.8).toFixed(2)+'deg)';
+  });
+  hero.addEventListener('pointerleave',function(){copy.style.transform=''});
 })();
 </script>
 
