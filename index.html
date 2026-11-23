@@ -468,6 +468,92 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
 }
 @media(prefers-reduced-motion:reduce){.hero-scene{animation:none}}
 
+
+/* Homepage v3 — clean, confident portfolio landing */
+.reference-hero{
+  position:relative;isolation:isolate;display:grid;
+  grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(1rem,4vw,4rem);
+  min-height:min(790px,calc(100vh - 70px));padding:5rem clamp(2rem,6vw,5.5rem);
+  text-align:left;overflow:hidden;
+  background:
+   radial-gradient(ellipse at 76% 45%,rgba(104,91,255,.19),transparent 34%),
+   radial-gradient(ellipse at 14% 100%,rgba(67,76,190,.17),transparent 38%),
+   linear-gradient(135deg,#11103d 0%,#171255 48%,#100e3c 100%);
+}
+.reference-hero:before{
+ content:"";position:absolute;inset:0;z-index:-1;opacity:.38;pointer-events:none;
+ background-image:radial-gradient(1px 1px at 8% 18%,#fff 99%,transparent),
+ radial-gradient(1px 1px at 22% 72%,#d6d1ff 99%,transparent),
+ radial-gradient(2px 2px at 46% 24%,#fff 99%,transparent),
+ radial-gradient(1px 1px at 68% 12%,#fff 99%,transparent),
+ radial-gradient(1px 1px at 92% 68%,#d6d1ff 99%,transparent),
+ radial-gradient(1px 1px at 82% 34%,#fff 99%,transparent);
+ background-size:260px 220px,310px 270px,370px 310px,290px 260px,330px 290px,240px 230px;
+}
+.reference-hero:after{content:"";position:absolute;z-index:-1;inset:auto -15% -50% 25%;height:70%;border-radius:50%;background:radial-gradient(ellipse,rgba(89,80,219,.2),transparent 68%);filter:blur(20px);pointer-events:none}
+.hero-copy{position:relative;z-index:5;max-width:590px;margin:0;padding:0}
+.hero-copy:before{content:none}
+.hero-copy:after{content:none}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 1.65rem;padding:9px 14px;border:1px solid rgba(191,184,255,.24);border-radius:99px;background:rgba(122,111,231,.1);font-size:.66rem;letter-spacing:.17em!important;color:#dcd8ff}
+.hero-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#91efc3;box-shadow:0 0 12px #91efc3}
+.name-title{display:block;margin:0 0 1.2rem;text-align:left}
+.name-title .name-main{display:block;font-size:clamp(4rem,8vw,7.1rem);line-height:.96;letter-spacing:-.065em!important;font-weight:800;text-align:left;white-space:nowrap;background:linear-gradient(110deg,#fff 10%,#d8d4ff 44%,#a9a0ff 72%,#fff 94%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 12px 24px rgba(3,2,34,.35));animation:nameShine 8s linear infinite}
+.name-title .name-sub{display:block;margin:.9rem 0 0 5px;text-align:left;font-size:.8rem;letter-spacing:.46em!important;color:#aaa2ff}
+.name-title .name-sub:before,.name-title .name-sub:after{display:none}
+.reference-hero .role{max-width:490px;margin:1.6rem 0 2rem;font-size:1rem;line-height:1.95;color:#d1cfee}
+.reference-hero .btn{display:inline-flex;align-items:center;justify-content:center;margin:0 10px 10px 0;padding:14px 21px;border-radius:9px;font-size:.77rem;font-weight:600;letter-spacing:.02em;transition:transform .25s,box-shadow .25s}
+.reference-hero .btn.fill{background:linear-gradient(110deg,#d7d2ff,#958aff);color:#17134f;box-shadow:0 9px 30px rgba(135,123,255,.25)}
+.reference-hero .btn.line{border:1px solid rgba(199,193,255,.38);background:rgba(255,255,255,.035);color:#e5e2ff}
+.reference-hero .btn:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(123,111,255,.24)}
+.hero-scene{
+ position:relative;inset:auto;width:min(100%,540px);height:clamp(390px,43vw,540px);
+ justify-self:center;align-self:center;overflow:hidden;border:0;border-radius:0;
+ background:radial-gradient(ellipse at 51% 48%,rgba(100,91,229,.18),transparent 54%);
+ box-shadow:none;animation:heroSceneFloat 9s ease-in-out infinite;
+}
+.hero-scene:before{
+ content:"";position:absolute;inset:8% 3%;border:1px solid rgba(192,185,255,.15);
+ border-radius:50%;transform:rotate(-24deg) scaleY(.65);
+ box-shadow:0 0 45px rgba(134,123,255,.08),inset 0 0 30px rgba(134,123,255,.05)
+}
+.hero-scene:after{
+ content:"CSBS  /  WEB DEVELOPMENT";position:absolute;right:2%;bottom:3%;z-index:6;
+ color:rgba(216,212,255,.6);font-size:.58rem;letter-spacing:.2em
+}
+.planet{
+ width:clamp(190px,27vw,285px);height:clamp(190px,27vw,285px);
+ left:25%;top:18%;border-radius:50%;
+ background:radial-gradient(circle at 32% 27%,#b5b2ff 0%,#7772db 16%,#44409d 42%,#211d68 72%,#11103e 100%);
+ box-shadow:inset -32px -22px 48px rgba(4,4,36,.72),inset 12px 10px 30px rgba(222,220,255,.24),0 0 65px rgba(122,113,255,.3);
+}
+.planet-ring{width:94%;height:38%;left:3%;top:37%;border:2px solid rgba(207,201,255,.62);border-left-color:rgba(207,201,255,.12);border-right-color:rgba(207,201,255,.18);border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 22px rgba(174,164,255,.25)}
+.distant-moon{width:48px;height:48px;right:12%;top:17%;background:radial-gradient(circle at 32% 28%,#fff,#c7c2ff 32%,#7770ca 72%,#30296f);box-shadow:0 0 28px rgba(192,185,255,.65)}
+.ship{left:12%;top:28%;font-size:1.4rem;color:#e8e4ff}
+.mountain{opacity:.58;filter:blur(.2px)}
+.mountain-back{height:30%;background:linear-gradient(160deg,#5551a8,#282365 75%);clip-path:polygon(0 75%,18% 40%,31% 65%,48% 12%,66% 67%,82% 35%,100% 72%,100% 100%,0 100%)}
+.mountain-front{height:20%;background:linear-gradient(160deg,#38358e,#17164f 78%);clip-path:polygon(0 60%,19% 20%,36% 65%,54% 28%,73% 68%,89% 18%,100% 54%,100% 100%,0 100%)}
+.scene-stars{top:8%;left:44%;letter-spacing:.9rem}
+.build-intro{padding:2.4rem 1.5rem 2rem}
+.build-intro p{font-size:.9rem;letter-spacing:.015em}
+@keyframes heroSceneFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:800px){
+ .reference-hero{grid-template-columns:1fr;min-height:0;padding:3rem 1.5rem 2rem;text-align:center;gap:0}
+ .hero-copy{grid-row:2;margin:0 auto;text-align:center}
+ .hero-kicker{margin-bottom:1.25rem}
+ .name-title{text-align:center}
+ .name-title .name-main{font-size:clamp(3.3rem,12vw,5.2rem);text-align:center;white-space:normal}
+ .name-title .name-sub{text-align:center;font-size:.7rem}
+ .reference-hero .role{margin:1.25rem auto 1.7rem}
+ .hero-scene{grid-row:1;width:min(86vw,430px);height:min(86vw,430px);margin:0 auto 1rem}
+}
+@media(max-width:430px){
+ .reference-hero{padding:2.3rem 1rem 1.6rem}
+ .name-title .name-main{font-size:clamp(2.8rem,12vw,3.6rem)}
+ .hero-scene{width:92vw;height:92vw}
+ .reference-hero .btn{padding:12px 15px}
+}
+@media(prefers-reduced-motion:reduce){.hero-scene{animation:none}.name-title .name-main{animation:none}}
+
 </style>
 </head>
 <body>
