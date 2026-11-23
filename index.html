@@ -519,11 +519,48 @@ footer{color:#e8c9bc!important}
 }
 @media(prefers-reduced-motion:reduce){#pstage .astronaut-buddy,#pstage .mascot-name{animation:none!important;opacity:1!important}}
 
+
+/* Final reference-matched layout: portrait and robot are separate elements */
+#bg,.space-sky{display:none!important}
+body{background:#160805!important;color:#fffaf5!important}
+#pstage{position:absolute!important;inset:18px 7% 0 23%!important;display:block!important;min-height:0!important;z-index:2!important;overflow:visible!important}
+#pstage .ph{position:absolute!important;left:3%!important;top:2%!important;right:auto!important;bottom:0!important;transform:none!important;width:min(430px,42vw)!important;height:100%!important;border:0!important;border-radius:0!important;overflow:hidden!important;background:transparent!important;box-shadow:none!important;z-index:2!important}
+#pstage .ph img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center top!important;display:block!important;mix-blend-mode:normal!important;mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%)!important}
+#pstage .astronaut-buddy{position:absolute!important;left:auto!important;right:19%!important;top:38%!important;bottom:auto!important;width:clamp(145px,15vw,185px)!important;height:clamp(170px,18vw,205px)!important;z-index:9!important;filter:drop-shadow(0 14px 20px rgba(65,20,4,.32))!important;animation:referenceRobotEnter 1.25s cubic-bezier(.2,.8,.25,1) both,referenceRobotFloat 4s 1.25s ease-in-out infinite!important}
+@keyframes referenceRobotEnter{0%{transform:translate3d(120px,18px,0) scale(.86);opacity:0}75%{transform:translate3d(-7px,-3px,0) scale(1.02);opacity:1}100%{transform:translate3d(0,0,0) scale(1);opacity:1}}
+@keyframes referenceRobotFloat{0%,100%{translate:0 0;rotate:-1deg}50%{translate:0 -8px;rotate:1deg}}
+#pstage .mascot-name{position:absolute!important;top:-34px!important;right:-8px!important;left:auto!important;z-index:10!important;opacity:0!important;background:#171717!important;color:#fff!important;border:1px solid rgba(255,255,255,.38)!important;border-radius:3px!important;padding:10px 14px!important;white-space:nowrap!important;box-shadow:0 10px 25px rgba(0,0,0,.22)!important;animation:referenceNameReveal .8s 1.05s ease-out forwards!important}
+#pstage .mascot-name strong{color:#fff!important}
+#pstage .mascot-name small{color:#f8c8b7!important}
+@keyframes referenceNameReveal{from{opacity:0;transform:translateX(38px) scale(.94)}to{opacity:1;transform:translateX(0) scale(1)}}
+#pstage .astronaut-tip{right:105%!important;left:auto!important;bottom:28%!important;top:auto!important;width:205px!important;max-width:45vw!important;background:#171717!important;color:#fff!important;border:1px solid rgba(255,255,255,.28)!important;border-radius:3px!important}
+#pstage .held-certificate{animation:certificateShow .9s .9s ease-out both,certificateWave 3.6s 1.8s ease-in-out infinite!important}
+.hero .hero-grid-mark{left:4%!important;top:32%!important;max-width:260px!important;z-index:5!important}
+.hero .project-teaser{right:3%!important;top:10%!important;width:150px!important;z-index:8!important}
+.hero .project-teaser img{height:95px!important}
+.cert-card:nth-child(4n+1){border-top:5px solid #d45b32!important}
+.cert-card:nth-child(4n+2){border-top:5px solid #527eaa!important}
+.cert-card:nth-child(4n+3){border-top:5px solid #b28a4b!important}
+.cert-card:nth-child(4n){border-top:5px solid #7c6c9e!important}
+@media(max-width:760px){
+ .hero{height:auto!important;min-height:760px!important}
+ #pstage{inset:80px 3% 170px 3%!important}
+ #pstage .ph{left:5%!important;width:min(62vw,330px)!important}
+ #pstage .astronaut-buddy{right:7%!important;top:42%!important;width:112px!important;height:138px!important}
+ #pstage .mascot-name{top:-27px!important;right:-12px!important;font-size:9px!important;padding:6px 8px!important}
+ #pstage .astronaut-tip{right:100%!important;bottom:32%!important;width:150px!important;font-size:9px!important}
+ .hero .hero-grid-mark{top:25%!important;left:5%!important;max-width:170px!important;font-size:.65rem!important}
+ .hero .project-teaser{right:4%!important;top:8%!important;width:100px!important}
+ .hero .project-teaser img{height:66px!important}
+ .hero>div:first-child{bottom:5%!important;left:5%!important;right:5%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #pstage .astronaut-buddy,#pstage .mascot-name,#pstage .held-certificate{animation:none!important;opacity:1!important;transform:none!important}
+}
+
 </style>
 </head>
 <body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="space-sky" aria-hidden="true"><div class="nebula nebula-one"></div><div class="nebula nebula-two"></div><div class="space-sun"></div><div class="space-moon"></div><div class="decor-planet planet-one"><i></i></div><div class="decor-planet planet-two"><i></i></div><div class="decor-planet planet-three"></div><i class="shooting-star"></i><i class="shooting-star two"></i><i class="shooting-star three"></i><i class="shooting-star four"></i></div>
 
 <div class="wrap">
 <header class="top">
@@ -696,7 +733,6 @@ footer{color:#e8c9bc!important}
 </div>
 <footer>© 2026 Jencirai T</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -714,65 +750,7 @@ document.querySelectorAll('.card').forEach(function(c){
 c.addEventListener('pointermove',function(e){if(reduce)return;var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform='rotateY('+x*9+'deg) rotateX('+(-y*9)+'deg)'});
 c.addEventListener('pointerleave',function(){c.style.transform=''});
 });
-try{
-var cv=document.getElementById('bg'),ps=document.getElementById('pstage').querySelector('.ph');
-var r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:false,powerPreference:'low-power'});
-r.setPixelRatio(Math.min(devicePixelRatio||1,1.25));
-var s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,80);cam.position.z=10;
-
-// 3D spiral galaxy: glowing core + four slowly rotating star arms.
-var galaxy=new THREE.Group();galaxy.position.set(-1.55,.65,-3.8);galaxy.rotation.set(.72,.18,0);galaxy.scale.setScalar(1.58);s.add(galaxy);
-var galaxyN=2400,gp=new Float32Array(galaxyN*3),gc=new Float32Array(galaxyN*3);
-for(var gi=0;gi<galaxyN;gi++){
-  var arm=gi%4,rad=Math.pow(Math.random(),.62)*2.45,ang=arm*Math.PI/2+rad*1.55+(Math.random()-.5)*.34;
-  gp[gi*3]=Math.cos(ang)*rad;gp[gi*3+1]=Math.sin(ang)*rad;gp[gi*3+2]=(Math.random()-.5)*.22*(1-rad/3);
-  var mix=Math.random(),col=new THREE.Color().setHSL(.56+mix*.22,.78,.58+Math.random()*.22);
-  gc[gi*3]=col.r;gc[gi*3+1]=col.g;gc[gi*3+2]=col.b;
 }
-var ggeo=new THREE.BufferGeometry();ggeo.setAttribute('position',new THREE.BufferAttribute(gp,3));ggeo.setAttribute('color',new THREE.BufferAttribute(gc,3));
-var gstars=new THREE.Points(ggeo,new THREE.PointsMaterial({size:.045,vertexColors:true,transparent:true,opacity:.96,depthWrite:false,blending:THREE.AdditiveBlending}));galaxy.add(gstars);
-var core=new THREE.Mesh(new THREE.SphereGeometry(.31,32,24),new THREE.MeshBasicMaterial({color:0xb9a6ff,transparent:true,opacity:.8}));galaxy.add(core);
-var halo=new THREE.Mesh(new THREE.SphereGeometry(.68,32,24),new THREE.MeshBasicMaterial({color:0x7657ff,transparent:true,opacity:.12,side:THREE.BackSide}));galaxy.add(halo);
-s.add(new THREE.AmbientLight(0xffffff,.6));
-[[0x18b9ff,-5,4,6,1.6],[0xff5fa2,5,-3,5,1.2],[0x8a63ff,0,5,-2,1.3]].forEach(function(l){var p=new THREE.PointLight(l[0],l[4],40);p.position.set(l[1],l[2],l[3]);s.add(p)});
-var orbit=new THREE.Group();s.add(orbit);
-var rg=new THREE.Mesh(new THREE.TorusGeometry(1.22,.018,10,160),new THREE.MeshBasicMaterial({color:0x18b9ff}));rg.rotation.set(1.25,.3,0);orbit.add(rg);
-var rg2=new THREE.Mesh(new THREE.TorusGeometry(1.4,.012,10,160),new THREE.MeshBasicMaterial({color:0xff5fa2,transparent:true,opacity:.8}));rg2.rotation.set(1.9,-.5,0);orbit.add(rg2);
-var moons=[];[[.07,1.22,0x18b9ff,1.25,.3],[.05,1.4,0xff5fa2,1.9,-.5]].forEach(function(o){var pv=new THREE.Group();pv.rotation.set(o[3],o[4],0);var m=new THREE.Mesh(new THREE.SphereGeometry(o[0],20,14),new THREE.MeshStandardMaterial({color:o[2],roughness:.3}));m.position.x=o[1];pv.add(m);orbit.add(pv);moons.push(pv)});
-var defs=[[0x18b9ff,.7,1],[0x8a63ff,.9,0],[0xff5fa2,.5,1],[0x18b9ff,.55,0],[0x8a63ff,.8,1],[0xff5fa2,.6,0]];
-var planets=defs.map(function(d,i){var g=new THREE.Group();
-var sp=new THREE.Mesh(new THREE.SphereGeometry(d[1],40,28),new THREE.MeshStandardMaterial({color:d[0],roughness:.55,metalness:.1,transparent:true}));sp.userData.op=1;g.add(sp);
-if(d[2]){var rr=new THREE.Mesh(new THREE.RingGeometry(d[1]*1.5,d[1]*2.1,64),new THREE.MeshBasicMaterial({color:d[0],transparent:true,opacity:.45,side:THREE.DoubleSide}));rr.userData.op=.45;rr.rotation.x=-1.2;g.add(rr)}
-g.userData.side=i%2?1:-1;s.add(g);return g});
-var starN=700,sg=new THREE.BufferGeometry(),spos=new Float32Array(starN*3);
-sg.setAttribute('position',new THREE.BufferAttribute(spos,3));
-var stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0xcfd8ff,size:.05,transparent:true,opacity:.8}));s.add(stars);
-var W,H,hh,asp,upp,docH;
-function size(){W=innerWidth;H=innerHeight;r.setSize(W,H,false);asp=W/H;cam.aspect=asp;cam.updateProjectionMatrix();hh=Math.tan(20*Math.PI/180)*10;upp=2*hh/H;docH=document.documentElement.scrollHeight;
-var small=asp<1;
-planets.forEach(function(g){g.scale.setScalar(small?.6:1);g.traverse(function(m){if(m.material&&m.userData.op)m.material.opacity=m.userData.op*(small?.5:1)})});
-for(var i=0;i<starN;i++){spos[i*3]=(Math.random()-.5)*2*hh*asp*1.6;spos[i*3+1]=hh-Math.random()*(docH*upp*.25+2*hh);spos[i*3+2]=-Math.random()*14}
-sg.attributes.position.needsUpdate=true}
-size();addEventListener('resize',function(){size();if(reduce)render()});addEventListener('load',function(){size();if(reduce)render()});
-var mx=0,my=0;addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-var t=0,lastFrame=0;
-function render(){
-galaxy.rotation.z=t*.045;galaxy.rotation.y=Math.sin(t*.12)*.12;core.scale.setScalar(1+Math.sin(t*1.8)*.07);
-var sy=pageYOffset,rc=ps.getBoundingClientRect();
-orbit.position.set(((rc.left+rc.width/2)/W-.5)*2*hh*asp,-((rc.top+rc.height/2)/H-.5)*2*hh,0);
-orbit.scale.setScalar(rc.width*upp/2);
-rg.rotation.z=t*.4;rg2.rotation.z=-t*.3;moons[0].rotation.z=t*.9;moons[1].rotation.z=-t*.7;
-stars.position.set(mx*.4,sy*upp*.25,0);
-var n=planets.length;
-planets.forEach(function(g,i){
-var x=g.userData.side*hh*asp*(asp<1?.92:.88);
-var y=-(i+.5)/n*docH*upp*.85+sy*upp*.85+Math.sin(t+i)*.2;
-g.position.set(x,y,-2-(i%3)*1.5);
-g.rotation.y=t*.3+i;g.rotation.z=.25*(i%2?1:-1)});
-r.render(s,cam)}
-function frame(now){if(!lastFrame||now-lastFrame>32){t+=.012;render();lastFrame=now}requestAnimationFrame(frame)}
-requestAnimationFrame(frame);
-}catch(e){}
 })();
 </script>
 
