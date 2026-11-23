@@ -466,6 +466,76 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
  #home.reference-hero .btn:after{display:none}
 }
 
+
+/* Extra cinematic motion for the original galaxy homepage */
+#home.reference-hero{overflow:hidden;isolation:isolate}
+#home.reference-hero:before{
+ content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;opacity:.5;
+ background:
+  radial-gradient(ellipse at 76% 38%,rgba(133,111,255,.2),transparent 28%),
+  radial-gradient(ellipse at 18% 78%,rgba(70,126,255,.16),transparent 30%),
+  radial-gradient(ellipse at 55% 8%,rgba(202,132,255,.12),transparent 24%);
+ filter:blur(24px);animation:galaxyNebula 13s ease-in-out infinite alternate
+}
+#home.reference-hero:after{
+ content:"";position:absolute;z-index:0;pointer-events:none;inset:0;opacity:.26;
+ background-image:
+  radial-gradient(2px 2px at 12% 20%,#fff 98%,transparent),
+  radial-gradient(1px 1px at 28% 74%,#d9d3ff 98%,transparent),
+  radial-gradient(2px 2px at 48% 15%,#fff 98%,transparent),
+  radial-gradient(1px 1px at 67% 63%,#e2ddff 98%,transparent),
+  radial-gradient(2px 2px at 89% 28%,#fff 98%,transparent),
+  radial-gradient(1px 1px at 82% 83%,#d9d3ff 98%,transparent);
+ background-size:330px 280px,270px 310px,390px 350px,300px 290px,360px 320px,280px 300px;
+ animation:starfieldSlide 34s linear infinite
+}
+#home.reference-hero .hero-copy,#home.reference-hero .hero-scene{z-index:2}
+#home.reference-hero .hero-scene{overflow:visible;animation:sceneHover 8s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(121,111,255,.13))}
+#home.reference-hero .hero-scene:before{
+ content:"";position:absolute;inset:5% 4%;z-index:0;pointer-events:none;border-radius:50%;
+ border:1px solid rgba(195,188,255,.2);transform:rotate(-24deg) scaleY(.56);
+ box-shadow:0 0 24px rgba(147,134,255,.12),inset 0 0 20px rgba(147,134,255,.06);
+ animation:orbitEllipse 16s linear infinite
+}
+#home.reference-hero .hero-scene:after{
+ content:"";position:absolute;z-index:4;pointer-events:none;left:4%;right:4%;top:7%;height:1px;
+ background:linear-gradient(90deg,transparent,rgba(203,196,255,.8),rgba(132,173,255,.6),transparent);
+ box-shadow:0 0 12px rgba(174,163,255,.8);animation:scanLine 7s ease-in-out infinite
+}
+#home.reference-hero .planet{filter:drop-shadow(0 0 24px rgba(130,119,255,.34));animation:planetTurn 28s linear infinite,planetPulse 5s ease-in-out infinite}
+#home.reference-hero .planet-ring{filter:drop-shadow(0 0 9px rgba(191,181,255,.48));animation:ringDrift 12s ease-in-out infinite,ringPulse 5s ease-in-out infinite,ringOrbit 24s linear infinite}
+#home.reference-hero .distant-moon{animation:moonFloat 8s ease-in-out infinite,moonGlow 4s ease-in-out infinite,moonOrbit 11s ease-in-out infinite}
+#home.reference-hero .mountain-back{animation:mountainBreathe 9s ease-in-out infinite alternate}
+#home.reference-hero .mountain-front{animation:mountainBreathe 7s ease-in-out infinite alternate-reverse}
+#home.reference-hero .scene-stars{animation:starShimmer 2.4s ease-in-out infinite,starDrift 16s ease-in-out infinite,starTwinkle 3.8s ease-in-out infinite}
+#home.reference-hero .ship{filter:drop-shadow(0 0 12px rgba(193,186,255,.7));}
+#home.reference-hero .hero-kicker{position:relative}
+#home.reference-hero .hero-kicker:after{content:"";position:absolute;inset:-4px;border-radius:inherit;border:1px solid rgba(189,178,255,.35);animation:badgeRipple 3.2s ease-out infinite;pointer-events:none}
+#home.reference-hero .btn{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,background .3s ease}
+#home.reference-hero .btn:hover{transform:translateY(-5px) scale(1.035);box-shadow:0 0 28px rgba(147,131,255,.34),0 12px 30px rgba(5,4,42,.28)}
+@keyframes galaxyNebula{0%{transform:translate3d(-2%,1%,0) scale(.96) rotate(0)}100%{transform:translate3d(3%,-2%,0) scale(1.1) rotate(7deg)}}
+@keyframes starfieldSlide{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-35px,22px,0)}}
+@keyframes sceneHover{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes orbitEllipse{0%{rotate:0deg;opacity:.55}50%{opacity:1}100%{rotate:360deg;opacity:.55}}
+@keyframes scanLine{0%,100%{transform:translateY(0);opacity:0}15%,75%{opacity:.8}50%{transform:translateY(300px);opacity:.25}}
+@keyframes planetPulse{0%,100%{filter:drop-shadow(0 0 18px rgba(130,119,255,.25))}50%{filter:drop-shadow(0 0 34px rgba(160,146,255,.55))}}
+@keyframes ringOrbit{0%,100%{margin-left:0}50%{margin-left:7px}}
+@keyframes moonOrbit{0%,100%{translate:0 0}50%{translate:9px -8px}}
+@keyframes mountainBreathe{0%{translate:0 0}100%{translate:0 -5px}}
+@keyframes starTwinkle{0%,100%{opacity:.55;filter:brightness(.9)}50%{opacity:1;filter:brightness(1.6)}}
+@keyframes badgeRipple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.16);opacity:0}}
+@media(max-width:800px){
+ #home.reference-hero:after{opacity:.17}
+ #home.reference-hero .hero-scene{animation:sceneHover 8s ease-in-out infinite}
+ #home.reference-hero .hero-scene:after{animation:none;opacity:.45}
+}
+@media(prefers-reduced-motion:reduce){
+ #home.reference-hero:before,#home.reference-hero:after,#home.reference-hero .hero-scene,#home.reference-hero .hero-scene:before,#home.reference-hero .hero-scene:after,
+ #home.reference-hero .planet,#home.reference-hero .planet-ring,#home.reference-hero .distant-moon,
+ #home.reference-hero .mountain-back,#home.reference-hero .mountain-front,#home.reference-hero .scene-stars,
+ #home.reference-hero .hero-kicker:after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
