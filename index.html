@@ -180,6 +180,74 @@ filter:blur(34px);animation:nebulaDrift 18s ease-in-out infinite alternate}
 }
 @media(prefers-reduced-motion:reduce){.space-sky:before,.space-sky:after,.nebula,.astronaut-buddy,.space-sun{animation:none!important}}
 
+
+/* Midnight Aurora visual theme */
+:root{
+ color-scheme:dark;
+ --bg:#070b1c;--card:rgba(20,29,58,.78);--card2:rgba(27,38,76,.82);
+ --cy:#77e5ff;--ink:#f4f7ff;--mute:#aab8d5;--line:rgba(164,190,255,.18);
+}
+body{
+ background:
+  radial-gradient(ellipse at 12% 12%,rgba(94,67,190,.22),transparent 34%),
+  radial-gradient(ellipse at 88% 32%,rgba(30,157,190,.16),transparent 32%),
+  linear-gradient(145deg,#070b1c 0%,#0b1027 48%,#090d20 100%);
+ color:var(--ink);
+}
+#bg{opacity:.42}
+.space-sky:after{opacity:.7;filter:blur(42px)}
+.space-sky:before{opacity:.62;background-size:440px 360px}
+.nebula{opacity:.22;filter:blur(52px)}
+.space-sun{opacity:.7;box-shadow:0 0 35px 10px rgba(255,177,112,.15),0 0 85px rgba(255,110,140,.12)}
+.space-moon{opacity:.72;box-shadow:0 0 24px rgba(190,210,255,.35)}
+.decor-planet{opacity:.72}
+.wrap{max-width:1160px}
+header.top{
+ position:sticky;top:10px;z-index:20;margin:12px 0 0;padding:13px 20px;
+ border:1px solid rgba(165,190,255,.16);border-radius:18px;
+ background:rgba(8,13,33,.76);backdrop-filter:blur(18px);
+ box-shadow:0 12px 38px rgba(0,0,0,.2)
+}
+.logo{letter-spacing:.04em;font-weight:700}
+.logo:before{content:"";width:9px;height:9px;border-radius:50%;background:#83ecff;box-shadow:0 0 14px #83ecff}
+header.top nav{gap:.45rem}
+header.top nav a{padding:8px 11px;border-radius:10px;color:#c5d1e9;transition:background .2s,color .2s}
+header.top nav a:hover{background:rgba(119,229,255,.1);color:#8cecff}
+.hero{min-height:76vh;gap:3rem;padding:3.2rem 0 2.4rem}
+.hero h1{font-size:clamp(3.3rem,8vw,6rem);letter-spacing:-.055em;line-height:1.02;text-shadow:0 8px 40px rgba(72,130,255,.15)}
+.hero h1 span{background:linear-gradient(110deg,#82edff,#a69aff 65%,#f0a9e8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{color:#c4d2ec;line-height:1.8}
+.hero .role b{color:#91eaff}
+.ph{border:5px solid rgba(135,224,255,.8);box-shadow:0 0 0 12px rgba(112,156,255,.07),0 0 75px rgba(76,166,255,.2);position:relative}
+.ph:after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(211,228,255,.5);pointer-events:none}
+.btn{padding:.78rem 1.35rem;border-radius:12px;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(75,188,235,.16)}
+.btn.fill{background:linear-gradient(110deg,#72e6f5,#9da8ff);color:#081126;box-shadow:0 8px 25px rgba(90,205,236,.18)}
+.btn.line{border:1px solid rgba(125,225,255,.55);background:rgba(117,196,255,.06);color:#a5efff}
+.card,.feat .card{
+ background:linear-gradient(145deg,rgba(24,36,70,.88),rgba(13,22,48,.86));
+ border:1px solid rgba(160,190,255,.14);border-radius:18px;
+ box-shadow:0 16px 42px rgba(0,0,0,.18);backdrop-filter:blur(12px)
+}
+.card:hover{border-color:rgba(122,224,255,.38);box-shadow:0 20px 48px rgba(27,135,190,.12)}
+section{scroll-margin-top:100px}
+section:not(.hero){position:relative}
+section h2{letter-spacing:-.025em}
+.eyebrow{display:inline-block;color:#8fe9ff;text-transform:uppercase;letter-spacing:.17em;font-size:.72rem;font-weight:700}
+.about,.project-grid,.cert-grid{gap:1.25rem}
+footer{color:#8393b5;border-top:1px solid rgba(160,190,255,.12);padding:1.5rem;text-align:center}
+.astronaut-tip{background:rgba(11,18,43,.94);border:1px solid rgba(128,216,255,.28);box-shadow:0 14px 42px rgba(0,0,0,.35)}
+.astronaut-tip strong{color:#8feaff}
+@media(max-width:760px){
+ header.top{position:relative;top:auto;align-items:flex-start;flex-direction:column;padding:12px 14px}
+ header.top nav{width:100%;padding-bottom:2px}
+ .hero{min-height:auto;padding:3rem 0 1.5rem;gap:1rem}
+ .hero h1{font-size:clamp(2.8rem,13vw,4.5rem)}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
 </style>
 </head>
 <body>
