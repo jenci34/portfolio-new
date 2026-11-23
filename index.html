@@ -292,26 +292,91 @@ footer{color:#8393b5;border-top:1px solid rgba(160,190,255,.12);padding:1.5rem;t
  .card,.cert-card,.btn{transition:none!important}
 }
 
+
+/* Neon Codeverse — web developer portfolio theme */
+:root{color-scheme:dark;--bg:#070b16;--card:rgba(17,27,48,.88);--card2:rgba(22,38,63,.92);--cy:#6df0e5;--ink:#f3f8ff;--mute:#a6b8cc;--line:rgba(109,240,229,.18)}
+body{background:radial-gradient(ellipse at 15% 12%,rgba(28,119,145,.18),transparent 35%),radial-gradient(ellipse at 86% 32%,rgba(102,82,204,.17),transparent 34%),linear-gradient(135deg,#060a14,#0b1424 55%,#080d1b);color:var(--ink)}
+#bg{opacity:.12}
+.space-sky:before{background-image:linear-gradient(rgba(109,240,229,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(109,240,229,.045) 1px,transparent 1px),radial-gradient(2px 2px at 15% 25%,#dffcff 50%,transparent 60%),radial-gradient(1px 1px at 73% 65%,#b7c6ff 50%,transparent 60%);background-size:54px 54px,54px 54px,230px 190px,270px 220px;opacity:.42;animation:gridSlide 55s linear infinite}
+.space-sky:after{background:radial-gradient(ellipse at 20% 25%,rgba(24,210,190,.18),transparent 35%),radial-gradient(ellipse at 78% 65%,rgba(104,90,220,.18),transparent 36%);filter:blur(55px);animation:codeAura 20s ease-in-out infinite alternate}
+.nebula{opacity:.12;filter:blur(65px)}
+.space-sun,.space-moon,.decor-planet,.shooting-star{display:none}
+@keyframes gridSlide{to{background-position:54px 54px,54px 54px,230px 190px,270px 220px}}
+@keyframes codeAura{from{transform:translate3d(-2%,1%,0) scale(.95)}to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+header.top{position:sticky;top:10px;z-index:20;margin:12px 0 0;padding:13px 20px;border:1px solid rgba(109,240,229,.17);border-radius:18px;background:rgba(7,14,27,.84);backdrop-filter:blur(18px);box-shadow:0 12px 38px rgba(0,0,0,.25)}
+.logo:before{content:"</>";display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(109,240,229,.4);border-radius:9px;color:#79f5e8;font-size:11px;font-weight:800;box-shadow:0 0 18px rgba(109,240,229,.12)}
+.logo{font-weight:700;letter-spacing:.03em}
+header.top nav a{color:#c0cfdf;border-radius:9px;padding:8px 10px}
+header.top nav a:hover{background:rgba(109,240,229,.09);color:#7ff7e9}
+.hero{min-height:76vh}
+.hero h1{font-size:clamp(3.2rem,8vw,5.8rem);letter-spacing:-.055em}
+.hero h1 span{background:linear-gradient(110deg,#70f4df,#80cfff 55%,#b69bff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero .role b{color:#7df4e5}
+.ph{border-color:rgba(109,240,229,.8);box-shadow:0 0 0 12px rgba(109,240,229,.045),0 0 70px rgba(57,211,197,.18)}
+#pstage:before,#pstage:after{border-color:rgba(109,240,229,.2)}
+.btn.fill{background:linear-gradient(110deg,#67e9d7,#86cfff);color:#07151c;box-shadow:0 8px 26px rgba(55,215,196,.17)}
+.btn.line{border-color:rgba(109,240,229,.5);color:#8af8e9;background:rgba(109,240,229,.04)}
+.card,.feat .card{background:linear-gradient(145deg,rgba(18,34,54,.92),rgba(11,22,39,.92));border:1px solid rgba(143,194,211,.15);border-radius:18px;box-shadow:0 18px 48px rgba(0,0,0,.2);backdrop-filter:blur(12px)}
+.card:hover{border-color:rgba(109,240,229,.42);box-shadow:0 20px 48px rgba(37,200,181,.11)}
+.cert-card{background:linear-gradient(145deg,rgba(18,34,54,.95),rgba(11,22,39,.95));border:1px solid rgba(109,240,229,.2);border-radius:17px;overflow:hidden}
+.cert-card:hover{border-color:rgba(109,240,229,.55);box-shadow:0 18px 42px rgba(37,200,181,.14)}
+.eyebrow{color:#79f3e4}
+.astronaut-buddy{position:fixed;right:18px;bottom:12px;z-index:30;width:174px;height:224px;pointer-events:auto;filter:drop-shadow(0 16px 22px rgba(0,0,0,.42));animation:mascotHover 4.5s ease-in-out infinite}
+.astronaut-buddy svg{width:100%;height:100%;overflow:visible;position:absolute;inset:0}
+@keyframes mascotHover{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+.held-certificate{transform-origin:153px 110px;animation:certificateWave 3s ease-in-out infinite}
+@keyframes certificateWave{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+.bot-body{transform-origin:103px 110px;animation:botBob 4.5s ease-in-out infinite}
+@keyframes botBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.mascot-name{position:absolute;top:-30px;right:0;z-index:2;white-space:nowrap;padding:5px 10px;border:1px solid rgba(109,240,229,.36);border-radius:10px;background:rgba(6,17,30,.92);color:#8ff8e9;font-size:10px;letter-spacing:.1em;box-shadow:0 0 20px rgba(109,240,229,.12)}
+.mascot-name strong{color:#fff;margin-left:4px}
+.mascot-name small{display:block;color:#9bb5c9;font-size:8px;letter-spacing:.18em}
+.astronaut-tip{right:150px;bottom:74px;width:225px;max-width:65vw;padding:12px 14px;background:rgba(7,17,31,.96);border:1px solid rgba(109,240,229,.3);box-shadow:0 15px 42px rgba(0,0,0,.38);font-size:11px}
+.astronaut-tip strong{color:#8ff8e9}
+@media(max-width:700px){.astronaut-buddy{width:112px;height:148px;right:5px;bottom:5px}.mascot-name{top:-22px;font-size:8px;padding:4px 6px}.mascot-name small{font-size:6px}.astronaut-tip{right:92px;bottom:42px;width:190px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.astronaut-buddy,.bot-body,.held-certificate,.space-sky:before,.space-sky:after{animation:none!important}}
+
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <div class="space-sky" aria-hidden="true"><div class="nebula nebula-one"></div><div class="nebula nebula-two"></div><div class="space-sun"></div><div class="space-moon"></div><div class="decor-planet planet-one"><i></i></div><div class="decor-planet planet-two"><i></i></div><div class="decor-planet planet-three"></div><i class="shooting-star"></i><i class="shooting-star two"></i><i class="shooting-star three"></i><i class="shooting-star four"></i></div>
-<div class="astronaut-buddy" tabindex="0" role="img" aria-label="A little astronaut floating in space">
-  <span class="astronaut-tip"><strong>Hey, space explorer! 👩‍🚀</strong>I’m Jencirai, a 3rd-year Computer Science and Business Systems student. I love exploring web development, Java, Python and AI-powered ideas. Come explore my projects and certificates!<br><a href="#about">Discover my story ↗</a></span>
-  <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <ellipse cx="60" cy="142" rx="29" ry="5" fill="#05051b" opacity=".35"/>
-    <path d="M34 91 22 111q-3 7 5 10l12-18M86 91l12 20q3 7-5 10l-12-18" fill="#dce7ff" stroke="#8798c8" stroke-width="3"/>
-    <rect x="36" y="72" width="48" height="53" rx="19" fill="#f4f7ff" stroke="#9aaddb" stroke-width="3"/>
-    <rect x="46" y="83" width="28" height="23" rx="7" fill="#9de8ff" stroke="#4b7ea9" stroke-width="2"/>
-    <path d="M48 88h10M48 94h15" stroke="#fff" stroke-width="2" opacity=".8"/>
-    <path d="M37 83 23 91q-6 4-2 10l15 4M83 83l14 8q6 4 2 10l-15 4" fill="#eef3ff" stroke="#9aaddb" stroke-width="3"/>
-    <rect x="43" y="22" width="34" height="43" rx="17" fill="#f6f8ff" stroke="#9aaddb" stroke-width="3"/>
-    <rect x="47" y="31" width="26" height="23" rx="12" fill="#19345f" stroke="#6edcff" stroke-width="3"/>
-    <path d="M51 37q8-7 17 0" stroke="#baf4ff" stroke-width="3" fill="none" opacity=".9"/>
-    <circle cx="60" cy="13" r="5" fill="#18b9ff"/><path d="M60 18v5" stroke="#9aaddb" stroke-width="3"/>
-    <path d="M43 119h34l-4 12H47z" fill="#cbd7f5" stroke="#8798c8" stroke-width="2"/>
-    <circle cx="60" cy="95" r="3" fill="#18b9ff"/>
+<div class="astronaut-buddy" tabindex="0" role="group" aria-label="Animated developer mascot holding a certificate">
+  <span class="astronaut-tip"><strong>Hi, I’m Jencirai T! 👋</strong>CSBS student • Web development enthusiast • Always learning and building.<br><a href="#certifications">See my certificates ↗</a></span>
+  <div class="mascot-name">JEN<strong>CIRAI T</strong><small>WEB DEVELOPER</small></div>
+  <svg viewBox="0 0 210 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="botShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7fbff"/><stop offset=".55" stop-color="#a9c9ed"/><stop offset="1" stop-color="#607da8"/></linearGradient>
+      <linearGradient id="botGlass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#183c65"/><stop offset=".55" stop-color="#1a7896"/><stop offset="1" stop-color="#151d45"/></linearGradient>
+      <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf0"/><stop offset="1" stop-color="#cbdcf4"/></linearGradient>
+      <filter id="botGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <ellipse cx="102" cy="207" rx="76" ry="8" fill="#020817" opacity=".5"/>
+    <g class="held-certificate">
+      <rect x="129" y="77" width="61" height="79" rx="5" fill="#7b69e8" transform="rotate(9 129 77)"/>
+      <rect x="124" y="70" width="61" height="79" rx="4" fill="url(#paper)" stroke="#75dff5" stroke-width="2" transform="rotate(7 124 70)"/>
+      <rect x="134" y="82" width="41" height="5" rx="2" fill="#5478ad" transform="rotate(7 134 82)"/>
+      <path d="M135 96h37M135 103h32M135 110h35" stroke="#7894b8" stroke-width="2" stroke-linecap="round" transform="rotate(7 135 96)"/>
+      <circle cx="157" cy="128" r="9" fill="#f4c76b" stroke="#d29a36" stroke-width="2"/>
+      <path d="m152 136-3 12 8-4 7 5-1-13" fill="#e6ad4f"/>
+      <path d="M126 92q-10 6-8 19" fill="none" stroke="#e8f5ff" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <g class="bot-body">
+      <path d="M67 139q-9 16-5 42l14 13h49l13-13q3-25-7-42z" fill="url(#botShell)" stroke="#7999c4" stroke-width="3"/>
+      <rect x="81" y="151" width="38" height="27" rx="8" fill="#102b4d" stroke="#6de8ff" stroke-width="2"/>
+      <path d="M89 160h21M89 167h14" stroke="#80efff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M68 147 51 163q-7 8 1 15l20-13M130 146l17 12q8 7 2 16l-19-11" fill="none" stroke="#dceaff" stroke-width="12" stroke-linecap="round"/>
+      <path d="M73 188 68 203h22l4-14M119 188l5 15h21l-8-17" fill="#7896bd" stroke="#d5e8ff" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="64" y="24" width="78" height="91" rx="34" fill="url(#botShell)" stroke="#9dc4ed" stroke-width="4"/>
+      <rect x="72" y="37" width="62" height="58" rx="25" fill="url(#botGlass)" stroke="#74e6ff" stroke-width="3" filter="url(#botGlow)"/>
+      <ellipse cx="91" cy="64" rx="5" ry="7" fill="#9bf6ff"/><ellipse cx="116" cy="64" rx="5" ry="7" fill="#9bf6ff"/>
+      <path d="M91 81q12 9 25 0" fill="none" stroke="#b4faff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M103 24V12" stroke="#a9c9ed" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="103" cy="9" r="6" fill="#7cf0ff" filter="url(#botGlow)"/>
+      <circle cx="65" cy="74" r="7" fill="#78eaff"/><circle cx="141" cy="74" r="7" fill="#78eaff"/>
+      <path d="M75 117h55" stroke="#78eaff" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g class="bot-sparkles" fill="#8befff"><path d="M32 47v13m-6-6h12M176 32v11m-5-5h10M39 128v9m-4-4h8"/></g>
   </svg>
 </div>
 <div class="wrap">
