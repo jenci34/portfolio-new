@@ -128,6 +128,30 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:2rem 1rem 3r
 /* Reference-inspired indigo landscape portfolio */
 
 /* Lightweight layered 3D motion — CSS only, no WebGL */
+
+/* Enhanced cinematic 3D hero and animated name */
+.reference-hero{background:radial-gradient(ellipse at 50% 35%,rgba(99,91,205,.34),transparent 48%),linear-gradient(180deg,#171052 0%,#211b78 52%,#28217c 100%)}
+.reference-hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(2px 2px at 12% 18%,#fff 45%,transparent 70%),radial-gradient(1.5px 1.5px at 82% 16%,#d8d4ff 45%,transparent 70%),radial-gradient(2px 2px at 69% 42%,#fff 45%,transparent 70%),radial-gradient(1px 1px at 35% 31%,#fff 45%,transparent 70%),radial-gradient(1.5px 1.5px at 91% 53%,#c9c4ff 45%,transparent 70%);opacity:.75;animation:starFieldPulse 5s ease-in-out infinite alternate}
+.name-title{display:flex;flex-direction:column;align-items:center;gap:.45rem;margin:.15rem 0 1rem;perspective:800px}
+.name-title .name-main{display:inline-block;font-size:clamp(2.8rem,8vw,6.2rem);line-height:1;font-weight:800;letter-spacing:.075em;color:#fff;background:linear-gradient(110deg,#fff 8%,#d9d5ff 28%,#fff 45%,#9e9aff 62%,#fff 82%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 12px 35px rgba(6,5,47,.35);filter:drop-shadow(0 0 14px rgba(176,170,255,.28));animation:nameShine 5s linear infinite,nameFloat 4.8s ease-in-out infinite;transform-origin:center}
+.name-title .name-sub{font-size:clamp(.72rem,1.8vw,1rem);font-weight:700;letter-spacing:.42em;color:#c9c4ff;text-shadow:0 0 14px rgba(181,174,255,.65);animation:subtitleReveal 1.4s both .25s}
+@keyframes nameShine{to{background-position:220% center}}
+@keyframes nameFloat{0%,100%{transform:translateY(0) rotateX(0deg)}50%{transform:translateY(-7px) rotateX(3deg)}}
+@keyframes subtitleReveal{from{opacity:0;letter-spacing:.8em;transform:translateY(12px)}to{opacity:1;letter-spacing:.42em;transform:translateY(0)}}
+@keyframes starFieldPulse{from{opacity:.38;transform:translateY(0)}to{opacity:.9;transform:translateY(-5px)}}
+.hero-kicker{animation:kickerFade 1.2s ease both; text-shadow:0 0 15px rgba(189,182,255,.5)}
+@keyframes kickerFade{from{opacity:0;letter-spacing:.5em;transform:translateY(-12px)}to{opacity:1;letter-spacing:.22em;transform:translateY(0)}}
+.planet{outline:1px solid rgba(188,199,255,.15);filter:drop-shadow(0 18px 20px rgba(4,6,44,.45))}
+.planet:before{background:repeating-linear-gradient(165deg,transparent 0 10px,rgba(186,198,255,.15) 11px 13px,transparent 14px 25px),radial-gradient(ellipse at 25% 30%,rgba(255,255,255,.18),transparent 45%);border-radius:50%}
+.planet-ring{box-shadow:0 0 14px rgba(160,175,255,.18),inset 0 0 10px rgba(160,175,255,.08)}
+.mountain-back{filter:drop-shadow(0 -8px 14px rgba(150,151,255,.12))}
+.mountain-front{filter:drop-shadow(0 -12px 20px rgba(178,177,255,.18))}
+.ship{font-size:2.7rem;animation:shipDrift 6s ease-in-out infinite,shipGlow 2.8s ease-in-out infinite alternate}
+@keyframes shipGlow{from{filter:drop-shadow(0 0 5px rgba(180,190,255,.35))}to{filter:drop-shadow(0 0 18px rgba(206,202,255,.9))}}
+.scene-stars{letter-spacing:.9rem}
+@media(max-width:600px){.name-title .name-main{letter-spacing:.035em}.name-title .name-sub{letter-spacing:.25em}}
+@media(prefers-reduced-motion:reduce){.reference-hero:before,.name-title .name-main,.name-title .name-sub,.hero-kicker{animation:none!important}}
+
 .reference-hero{perspective:1100px;transform-style:preserve-3d}
 .hero-scene{transform-style:preserve-3d;perspective:1000px;--px:0;--py:0}
 .planet{transform:translate3d(calc(var(--px)*-10px),calc(var(--py)*-7px),35px) rotateY(-12deg) rotateX(8deg);transform-style:preserve-3d;animation:planetTurn 28s linear infinite;box-shadow:inset -28px -18px 42px rgba(4,7,48,.9),inset 10px 8px 25px rgba(174,190,255,.22),0 18px 35px rgba(5,8,48,.42),0 0 45px rgba(112,137,255,.3)}
@@ -218,7 +242,7 @@ footer{background:#100d48}
 <div class="hero reference-hero" id="home">
   <div class="hero-copy">
     <span class="hero-kicker">WELCOME TO MY PORTFOLIO</span>
-    <h1>We build <span>digital experiences</span><br>that make an impact.</h1>
+    <h1 class="name-title"><span class="name-main">JEN CIRAI T</span><span class="name-sub">WEB DEVELOPER</span></h1>
     <p class="role">I'm Jencirai T — a Computer Science and Business Systems student passionate about web development and creating useful digital solutions.</p>
     <a class="btn fill" href="#projects">Explore my work</a>
     <a class="btn line" href="#contact">Get in touch</a>
