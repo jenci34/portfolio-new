@@ -411,6 +411,63 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
 .cert-meta p,.card p,.rows li span{line-height:1.85}
 @media(prefers-reduced-motion:reduce){html.motion-ready .motion-text{opacity:1;transform:none;filter:none;transition:none}section h2.motion-text.motion-in,h3.motion-text.motion-in,p.motion-text.motion-in,section .eyebrow.motion-text.motion-in{animation:none!important}nav a:after{display:none}}
 
+
+/* First-screen refresh: editorial hero + cinematic planet stage */
+.reference-hero{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);
+  align-items:center;justify-content:stretch;gap:clamp(1rem,3vw,3rem);
+  min-height:clamp(620px,calc(100vh - 78px),820px);
+  padding:3.5rem clamp(1.5rem,5vw,4rem) 4rem;text-align:left;
+  background:radial-gradient(ellipse at 76% 48%,rgba(104,94,220,.22),transparent 38%),
+             radial-gradient(ellipse at 14% 80%,rgba(70,83,190,.15),transparent 42%);
+  border-bottom:1px solid rgba(207,202,255,.12)
+}
+.reference-hero:before{content:"";position:absolute;inset:8% 3%;border:1px solid rgba(198,192,255,.07);border-radius:32px;pointer-events:none;mask-image:linear-gradient(90deg,black,transparent 90%)}
+.hero-copy{position:relative;z-index:4;max-width:620px;padding:1rem 0}
+.hero-kicker{font-size:.68rem;letter-spacing:.2em!important;color:#d8d4ff;margin-bottom:1.45rem}
+.hero-copy:before{content:"AVAILABLE FOR INTERNSHIP & COLLABORATION";display:inline-flex;align-items:center;gap:9px;margin-bottom:1.15rem;padding:7px 12px;border:1px solid rgba(181,174,255,.2);border-radius:99px;background:rgba(109,99,204,.12);color:#d8d4ff;font-size:.61rem;letter-spacing:.09em;backdrop-filter:blur(10px)}
+.hero-copy:after{content:"";position:absolute;left:0;top:1.27rem;width:6px;height:6px;border-radius:50%;background:#91f2c4;box-shadow:0 0 12px #91f2c4;transform:translate(12px,-1px)}
+.name-title{align-items:flex-start;gap:.6rem;margin:.2rem 0 1.3rem}
+.name-title .name-main{display:block;font-size:clamp(3.5rem,7.1vw,6.2rem);line-height:.98;letter-spacing:-.045em!important;white-space:normal;text-align:left;background:linear-gradient(105deg,#fff 8%,#d9d5ff 34%,#a9a0ff 56%,#fff 78%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.name-title .name-sub{display:block;margin-top:.35rem;padding-left:5px;text-align:left;font-size:clamp(.76rem,1.3vw,.96rem);letter-spacing:.42em!important;color:#bdb8ff}
+.name-title .name-sub:before,.name-title .name-sub:after{display:none}
+.reference-hero .role{max-width:500px;margin:1.5rem 0 2rem;font-size:clamp(.9rem,1.25vw,1.03rem);line-height:1.95;color:#d0cdef}
+.reference-hero .btn{padding:.85rem 1.55rem;font-size:.78rem;letter-spacing:.025em}
+.reference-hero .btn.fill{background:linear-gradient(110deg,#d0cbff,#9288ff);color:#17134f;box-shadow:0 10px 28px rgba(134,123,255,.22)}
+.reference-hero .btn.line{border-color:rgba(190,184,255,.55);color:#e2dfff;background:rgba(133,122,230,.08)}
+.hero-scene{position:relative;inset:auto;width:100%;height:clamp(350px,42vw,510px);max-width:570px;justify-self:center;align-self:center;overflow:hidden;border:1px solid rgba(195,190,255,.15);border-radius:48% 52% 45% 55%/48% 43% 57% 52%;background:radial-gradient(ellipse at 50% 38%,rgba(103,101,208,.28),transparent 48%),linear-gradient(155deg,rgba(50,46,135,.34),rgba(13,12,66,.12));box-shadow:inset 0 0 75px rgba(150,143,255,.13),0 28px 70px rgba(3,3,34,.35),0 0 55px rgba(120,113,230,.1);animation:heroSceneFloat 9s ease-in-out infinite}
+.hero-scene:before{content:"";position:absolute;inset:7%;border:1px solid rgba(202,197,255,.13);border-radius:50%;transform:rotate(-18deg) scaleY(.55);box-shadow:0 0 25px rgba(182,175,255,.07)}
+.hero-scene:after{content:"JENCIRAI  •  DIGITAL CREATIVE";position:absolute;right:7%;bottom:7%;z-index:5;color:rgba(224,221,255,.72);font-size:.55rem;letter-spacing:.2em}
+.planet{width:clamp(150px,23vw,250px);height:clamp(150px,23vw,250px);left:29%;top:18%}
+.planet-ring{width:82%;left:9%;top:34%;height:34%}
+.distant-moon{width:42px;height:42px;right:17%;top:19%}
+.ship{top:25%;left:18%;font-size:2rem}
+.mountain-back{height:45%;bottom:0}
+.mountain-front{height:34%;bottom:0}
+.scene-stars{top:9%;left:48%;font-size:.9rem}
+@keyframes heroSceneFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+.build-intro{padding-top:2.4rem}
+@media(max-width:800px){
+ .reference-hero{grid-template-columns:1fr;gap:0;min-height:0;padding:3.5rem 1.5rem 2rem;text-align:center}
+ .hero-copy{margin:0 auto;padding:0}
+ .hero-copy:before{margin-left:auto;margin-right:auto}
+ .hero-copy:after{left:calc(50% - 116px)}
+ .name-title{align-items:center}
+ .name-title .name-main{text-align:center;font-size:clamp(3rem,12vw,5rem)}
+ .name-title .name-sub{text-align:center}
+ .reference-hero .role{margin:1.2rem auto 1.5rem}
+ .hero-scene{grid-row:1;width:min(82vw,390px);height:min(82vw,390px);margin:0 auto 1.8rem}
+ .hero-copy{grid-row:2}
+}
+@media(max-width:420px){
+ .reference-hero{padding:2.5rem 1rem 1.5rem}
+ .hero-scene{width:88vw;height:88vw}
+ .name-title .name-main{font-size:clamp(2.65rem,12vw,3.5rem)}
+ .name-title .name-sub{letter-spacing:.28em!important}
+ .reference-hero .btn{margin-left:.2rem;margin-right:.2rem;padding:.75rem 1.1rem}
+}
+@media(prefers-reduced-motion:reduce){.hero-scene{animation:none}}
+
 </style>
 </head>
 <body>
