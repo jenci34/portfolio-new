@@ -709,7 +709,7 @@ section .eyebrow.motion-text.motion-in{animation:eyebrowPulse 4.5s ease-in-out i
 <div><b>College</b>Ramco Institute of Technology, Rajapalayam</div><div><b>CGPA</b>8.33 / 10</div>
 <div><b>Email</b>tjenci70@gmail.com</div><div><b>Phone</b>7418405996</div>
 </div>
-<p style="margin:1.4rem 0 0"><a class="btn fill" href="#" data-cv>Download CV</a></p>
+<p style="margin:1.4rem 0 0"><a class="btn fill" href="./jenci.pdf" download="Jencirai_T_CV.pdf">Download CV</a></p>
 </div>
 </div>
 <div class="stats">
@@ -831,9 +831,6 @@ var CV="JVBERi0xLjUKJb/3ov4KMyAwIG9iago8PCAvTGluZWFyaXplZCAxIC9MIDEwMDUwNyAvSCBb
 })();
 
 +4c5/V8wxZk3UGiazQ3/QMyiyOyT0oAj2tBoCSFd3PnL2Xe0D4gVg3c1etUJD319e/g+DYR79CmVuZHN0cmVhbQplbmRvYmoKMSAwIG9iago8PCAvQXV0aG9yICgpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMTIxNTA5MTBaKSAvQ3JlYXRvciAoTGFUZVggd2l0aCBoeXBlcnJlZikgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYxMTEyMTUwOTEwWikgL1BURVguRnVsbGJhbm5lciAoVGhpcyBpcyBwZGZUZVgsIFZlcnNpb24gMy4xNDE1OTI2NTMtMi42LTEuNDAuMjkgXChUZVggTGl2ZSAyMDI2XCkga3BhdGhzZWEgdmVyc2lvbiA2LjQuMikgL1Byb2R1Y2VyIChwZGZUZVgtMS40MC4yOSkgL1N1YmplY3QgKCkgL1RpdGxlICgpIC9UcmFwcGVkIC9GYWxzZSA+PgplbmRvYmoKMiAwIG9iago8PCAvVHlwZSAvWFJlZiAvTGVuZ3RoIDIzIC9GaWx0ZXIgL0ZsYXRlRGVjb2RlIC9EZWNvZGVQYXJtcyA8PCAvQ29sdW1ucyA1IC9QcmVkaWN0b3IgMTIgPj4gL1cgWyAxIDMgMSBdIC9TaXplIDMgL0lEIFs8YzQyNWMzOWJjNjEzYWM5NTBmZDU2YWRhYTQ3ZTVhYzY+PDk4MWMzYWRhNDUyM2JjZGNkMjVkOWFhMDAxNWY4MGIwPl0gPj4Kc3RyZWFtCnicY2IAASZGxjYPBiYGBkYLBgAH2AEQCmVuZHN0cmVhbQplbmRvYmoKICAgICAgICAgICAgICAgIApzdGFydHhyZWYKMjE2CiUlRU9GCg==";
-function cvBlob(){var bin=atob(CV),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new Blob([u],{type:'application/pdf'})}
-document.querySelectorAll('[data-cv]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();try{var b=cvBlob(),url=URL.createObjectURL(b),l=document.createElement('a');l.href=url;l.download='Jencirai_T_CV.pdf';l.style.display='none';document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(url)},10000)}catch(err){console.error('CV download failed:',err);window.alert('CV download failed. Please try again or contact me.')}})});
-
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.4});document.querySelectorAll('.bar').forEach(function(b){io.observe(b)})}else{document.querySelectorAll('.bar').forEach(function(b){b.classList.add('on')})}
 document.querySelectorAll('.card').forEach(function(c){
 c.addEventListener('pointermove',function(e){if(reduce)return;var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform='rotateY('+x*9+'deg) rotateX('+(-y*9)+'deg)'});
